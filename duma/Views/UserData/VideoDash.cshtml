@@ -1,0 +1,172 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Dash.js Rocks</title>
+    <style>
+        .monitor_drop_down {
+            margin-left: 510px;
+        }
+    </style>
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+
+</head>
+<body>
+    <center>
+        <div id="video_list">
+            <video controls width="640" height="400"></video>
+        </div>
+        <script src="http://cdn.dashjs.org/v3.1.0/dash.all.min.js"></script>        <!--latest-->
+        <script>            
+            // ---------------------------------------------------------
+            function Video_dash(id_player, url) {
+                var player = dashjs.MediaPlayer().create();
+                player.initialize(document.querySelector(id_player), url, false);
+
+                id_player = null;
+                url = null;
+
+                return player;
+            }
+            // ---------------------------------------------------------
+            function setupVideo(id_player, url) {
+                var context = new Dash.di.DashContext();
+                var player = new MediaPlayer(context);
+                player.startup();
+                player.attachView(document.querySelector(id_player));
+                player.attachSource(url);
+                return player;
+            }
+            var player_0 = null, player_1 = null, player_2 = null, player_3 = null;            
+
+        </script>
+    </center>
+
+    <div id="video_buton_list" style="margin-left:250px">
+        <button onclick="Show_player(0)"><img src="~/Images/screen_1.png" width="30" height="30"></button>
+        <button onclick="Show_player(4)"><img src="~/Images/screen_4.jpg" width="30" height="30"></button>             
+        <!--<button onclick="Remove_video()" class="xxx">remove</button>-->
+        @Html.DropDownList("monitor", new SelectList(new string[] { "0", "1", "2", "3" }), new { @class = "monitor_drop_down" })
+    </div>    
+    <script>
+        // ---------------------------------------------------------
+        function Insert_video() {
+            var side_panel = $('.side-panel > ul > li > ul > li > span');
+            //http://81.176.228.89:8888/video/, http://localhost:8888/video/
+            $(side_panel[0]).replaceWith('<span class="file"><a href="http://localhost:8888/video/">Видео 1.2</a></span>');
+            side_panel = null;
+    }
+    // ---------------------------------------------------------
+        function Show_player(number_screen) {
+            var list_div = $('#video_list');                        
+
+            if (player_0 != null) player_0.reset();
+            if (player_1 != null) player_1.reset();
+            if (player_2 != null) player_2.reset();
+            if (player_3 != null) player_3.reset();                        
+
+            list_div.empty();
+
+            switch (number_screen) {
+                case 0:                                        
+                    $('#monitor').show();
+                    list_div.append('<video data-dashjs-player autoplay id="videoPlayer1" controls></video>');
+                    $('#video_buton_list').css('margin-left', 250);
+                    $('#videoPlayer1').css('width', 640).css('height', 400);
+                    player_0 = Video_dash("#videoPlayer1", "http://localhost:50836/videos/0/video_" + monitor.selectedIndex + "/dash.mpd");
+
+
+                    if (browser.name == "webkit")
+                    $('#video_list > #videoPlayer1').click(function () {
+
+                        player_0.reset();
+                        
+                        player_0 = Video_dash("#videoPlayer1", "http://localhost:50836/videos/0/video_" + monitor.selectedIndex + "/dash.mpd");
+                    });
+                    if (browser.name == "mozilla") {
+                        //console.log(browser.name);
+                    }
+
+                    break;
+                case 4:                    
+                    $('#monitor').hide();
+                    list_div.append('<video id="videoPlayer1" controls></video><video id="videoPlayer2" controls></video><br /><video id="videoPlayer3" controls></video><video id="videoPlayer4" controls></video>');
+                    $('#video_buton_list').css('margin-left', 230);
+                    $('#videoPlayer1').css('width', 340).css('height', 200);
+                    $('#videoPlayer2').css('width', 340).css('height', 200);
+                    $('#videoPlayer3').css('width', 340).css('height', 200);
+                    $('#videoPlayer4').css('width', 340).css('height', 200);
+
+                    player_0 = Video_dash("#videoPlayer1", "http://localhost:50836/videos/0/video_0/dash.mpd?" + new Date().getTime());
+                    player_1 = Video_dash("#videoPlayer2", "http://localhost:50836/videos/0/video_1/dash.mpd?" + new Date().getTime());
+                    player_2 = Video_dash("#videoPlayer3", "http://localhost:50836/videos/0/video_2/dash.mpd?" + new Date().getTime());
+                    player_3 = Video_dash("#videoPlayer4", "http://localhost:50836/videos/0/video_3/dash.mpd?" + new Date().getTime());                    
+
+                    //reset_video_off();
+                    reset_video();
+
+                    break;
+            }
+            list_div = null;
+    }             
+    // ---------------------------------------------------------
+    function reset_video_off() {
+        $('#video_list > #videoPlayer1').off('click');
+        $('#video_list > #videoPlayer2').off('click');
+        $('#video_list > #videoPlayer3').off('click');
+        $('#video_list > #videoPlayer4').off('click');
+    }
+    // ---------------------------------------------------------
+    function reset_video() {
+        $('#video_list > #videoPlayer1').click(function () {
+
+                        player_0.reset();
+                        
+                        player_0 = Video_dash("#videoPlayer1", "http://localhost:50836/videos/0/video_" + 0 + "/dash.mpd");
+                    });
+                    $('#video_list > #videoPlayer2').click(function () {
+
+                        player_1.reset();
+                        
+                        player_1 = Video_dash("#videoPlayer2", "http://localhost:50836/videos/0/video_" + 1 + "/dash.mpd");
+                    });
+                    $('#video_list > #videoPlayer3').click(function () {
+
+                        player_2.reset();
+                        
+                        player_2 = Video_dash("#videoPlayer3", "http://localhost:50836/videos/0/video_" + 2 + "/dash.mpd");
+                    });
+                    $('#video_list > #videoPlayer4').click(function () {
+
+                        player_3.reset();
+                        
+                        player_3 = Video_dash("#videoPlayer4", "http://localhost:50836/videos/0/video_" + 3 + "/dash.mpd");
+                    });
+    }
+    // ---------------------------------------------------------
+    $('#monitor').change(function () {
+        //console.log(this.selectedIndex);
+        //Show_player(0);                
+    });
+
+    // ---------------------------------------------------------        
+    var browser = (function() {
+	var s = navigator.userAgent.toLowerCase();
+	var match = /(webkit)[ \/]([\w.]+)/.exec(s) || 
+				/(opera)(?:.*version)?[ \/]([\w.]+)/.exec(s) || 
+				/(msie) ([\w.]+)/.exec(s) ||
+				!/compatible/.test(s) && /(mozilla)(?:.*? rv:([\w.]+))?/.exec(s) || [];
+	return { name: match[1] || "", version: match[2] || "0" }; 
+	}
+        ());    
+    </script>
+    <div>
+        @if (ViewBag.IsAuthenticated == "true") {
+            <script>
+                Insert_video();
+            </script>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,202 @@
+﻿@model duma.Models.LoginModel
+    @{
+        ViewBag.Title = "Login";                
+    }       
+  
+<head>
+
+    <style>
+        .error{
+
+            color:black;
+
+        }
+
+        input.error{
+
+            background-color:salmon
+        }
+    </style>
+
+</head>
+    <div class="container">
+
+        <div class="col-md-offset-1">
+
+            <h2>Вход в сервис</h2>
+
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @id = "form_login" }))
+            {
+
+
+                <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+
+
+
+                <label for="email" style="color:blue">Email</label><br />
+
+                <input name="email" type="email" class="form-control" /><br />
+
+
+
+
+                <label for="password" style="color:blue">Пароль</label><br />
+
+                <input name="password" type="password" class="form-control" autocomplete="on" /><br />
+
+
+                <input class="check_box-soglasie" type="checkbox" />
+
+                <label><a style="font-size:10px" class="ref-a-check-box-soglasie">Ввод данных подтверждает ваше согласие на обработку персональных данных.</a></label> <br />
+
+                <input class="check_box-privacy-policy" type="checkbox" />
+
+                <label><a style="font-size:10px" class="ref-a-check-box-policy">Ввод данных подтверждает ваше согласие с политикой конфиденциальности.</a></label> <br />
+
+
+                <label>Введите число с картинки</label> <br />
+
+                <img src='@Url.Action("Captcha", "Account")' alt='captcha' /><br />
+
+
+                <input name="captcha" type="number" style="margin-top:25px" />
+
+                <button class="button_exit" disabled type="submit" style="background-color:green;color:white;margin-left:25px">Войти</button>
+            }
+
+        </div>
+
+    </div>    
+<script>
+    //---------------------------------------------
+    //---------------------------------------------
+
+     var forma = $('#form_login').validate({
+
+        //Введите номер телефона
+
+         rules: {
+
+             
+            email: {
+
+                required: true
+
+             },
+
+            password: {
+
+                required: true
+                //minlength: 2,
+                //maxlength: 21
+
+            }
+
+        },
+        messages: {
+
+            email: {
+
+                required: "Введите email почту."
+
+            },
+
+            password: {
+
+                required: "Введите пароль."
+                //minlength: "Ведите более 2-х знаков.",
+                //maxlength: "Ведите не более 21-и знаков"
+
+            }            
+
+        }
+
+    });
+    //---------------------------------------------
+
+    $('.check_box-soglasie').click(function () {
+        
+        //$('span.field-validation-error').remove();
+        //console.log($(this)[0].checked);
+
+        if ($(this)[0].checked && $('.check_box-privacy-policy')[0].checked) {
+
+            //$('span.field-validation-error').remove();
+
+            $('button').attr('disabled', null);            
+
+            //console.log('zzz');
+        }
+        else $('button').attr('disabled', 'disabled');
+
+    });
+    $('.check_box-privacy-policy').click(function () {
+
+        //$('span.field-validation-error').remove();
+        //console.log($(this)[0].checked);
+
+        if ($(this)[0].checked && $('.check_box-soglasie')[0].checked) {
+
+            //$('span.field-validation-error').remove();
+
+            $('button').attr('disabled', null);
+
+            //console.log('zzz');
+        }
+        else $('button').attr('disabled', 'disabled');
+
+    });
+    //---------------------------------------------
+    $('.ref-a-check-box-soglasie').click(function () {
+
+        var hostname = $(window.location).attr('hostname');
+
+        var url = hostname == "localhost" ? "/Policy/Soglasie" : "/duma/Policy/Soglasie";
+
+        var body = $('body')[0];
+
+        //$(body).css('background-color', 'gray');
+
+        $('#rezults').css("display", "none");
+
+        $("#img_modal").show();
+
+        $('.form-load-layout').load(url, function () {
+
+            $('#img_modal').hide();
+
+            //$(body).css('background-color', 'bisque');
+
+        });
+
+    });
+
+    $('.ref-a-check-box-policy').click(function () {
+
+        var hostname = $(window.location).attr('hostname');
+
+        var url = hostname == "localhost" ? "/Policy/PrivacyPolicy" : "/duma/Policy/PrivacyPolicy";
+
+        var body = $('body')[0];
+
+        //$(body).css('background-color', 'gray');        
+
+        $('#rezults').css("display", "none");
+
+        $("#img_modal").show();   
+
+        $('.form-load-layout').load(url, function () {            
+
+            $('#img_modal').hide();
+
+            //$(body).css('background-color', 'bisque');        
+
+        });
+
+    });
+    //---------------------------------------------    
+    $('#main').show();
+    //---------------------------------------------
+    //---------------------------------------------
+</script>
+

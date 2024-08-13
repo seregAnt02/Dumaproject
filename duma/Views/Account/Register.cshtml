@@ -1,0 +1,54 @@
+﻿@model duma.Models.RegisterModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "Register";        
+} 
+<div class="container">
+    <h2 class="text-center">Регистрация нового пользователя</h2>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <hr />
+            @Html.ValidationSummary(false)
+            <div>
+                Электронный адрес
+                <div>
+                    @Html.EditorFor(model => model.Email)
+                </div>
+            </div>
+            <div>
+                Год рождения
+                <div>
+                    @Html.EditorFor(model => model.Year)
+                </div>
+            </div>
+            <div>
+                Пароль
+                <div>
+                    @Html.EditorFor(model => model.Password)
+                </div>
+            </div>
+            <div>
+                Подтвердить пароль
+                <div>
+                    @Html.EditorFor(model => model.PasswordConfirm)
+                </div>
+            </div>
+            <div>
+                <div>
+                    <input type="submit" value="Зарегистрировать" />
+                </div>
+            </div>
+        }
+</div>
+<div class="navbar navbar-inverse navbar-fixed-top" ">
+    <div class="container">
+        <div class="nav-justified">
+            <ul>
+                <li class="navbar-left">@Html.ActionLink("Меню аккаунта", "Account", "Account")</li>
+            </ul>
+        </div>
+    </div>
+</div>

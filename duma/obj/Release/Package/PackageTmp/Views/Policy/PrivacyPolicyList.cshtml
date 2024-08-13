@@ -1,0 +1,112 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <style>
+        .heading {
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<div class="container">
+
+    <h4 class="heading"><u><b>Безопасность</b></u></h4>
+
+    <br />
+
+    <a href="#" id="button_policy_id">Политика конфиденциальности</a> <br />
+    <a href="#" id="button_soglasie_id">Согласие на обработку персональных данных</a> <br />
+    <a href="#" id="button_cookies">Условия использования файлов cookie</a>
+
+</div>
+
+<script>
+
+    let button_policy_id = document.getElementById('button_policy_id');    
+
+    button_policy_id.onclick = async function () {
+
+        var hostname = $(window.location).attr('hostname');
+
+        var url = hostname == "localhost" ? "/Policy/PrivacyPolicy" : "/duma/Policy/PrivacyPolicy";
+
+        var body = $('body')[0];
+
+        //$(body).css('background-color', 'gray');
+
+        $('#rezults').css("display", "none");
+
+        var img_modal = $('#img_modal')[0];
+
+        $(img_modal).show().css("margin-top", "200px");
+
+        $('.form-load-layout').load(url, function () {
+
+            //$(body).css('background-color', 'bisque');
+
+            $(img_modal).hide();
+
+        });
+         //console.log(this);
+     }    
+
+    let button_soglasie_id = document.getElementById('button_soglasie_id');
+
+    button_soglasie_id.onclick = async function () {
+
+        var hostname = $(window.location).attr('hostname');
+
+        var url = hostname == "localhost" ? "/Policy/Soglasie" : "/duma/Policy/Soglasie";
+
+        var body = $('body')[0];
+
+        //$(body).css('background-color', 'gray');
+
+        $('#rezults').css("display", "none");
+
+        var img_modal = $('#img_modal')[0];
+
+        $(img_modal).show().css("margin-top", "200px");
+
+        $('.form-load-layout').load(url, function () {
+
+            //$(body).css('background-color', 'bisque');
+
+            $(img_modal).hide();
+
+        });
+        //console.log(this);
+    }
+    let button_cookies = document.getElementById('button_cookies');
+
+    button_cookies.onclick = async function () {
+
+        var hostname = $(window.location).attr('hostname');
+
+        var url = hostname == "localhost" ? "/Policy/CookieInfo" : "/duma/Policy/CookieInfo";
+
+        var body = $('body')[0];
+
+        //$(body).css('background-color', 'gray');
+
+        $('#rezults').css("display", "none");
+
+        var img_modal = $('#img_modal')[0];
+
+        $(img_modal).show().css("margin-top", "200px");
+
+        $('.form-load-layout').load(url, function () {
+
+            //$(body).css('background-color', 'bisque');
+
+            $(img_modal).hide();
+
+        });
+        //console.log(this);
+    }
+
+</script>

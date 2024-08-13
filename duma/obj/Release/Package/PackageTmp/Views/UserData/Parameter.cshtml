@@ -1,0 +1,145 @@
+﻿@model Parameter
+@using duma.Models
+@{
+    // Layout = "~/Views/Shared/_LayoutUserData.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <head>
+        <meta name="description" content="параметры локалки" />
+    </head>
+    <title>Параметры</title>
+    <style>
+        .table_param tr > th {
+            text-align: center;
+        }
+
+        .table_param tr > td {
+            text-align: center;
+        }
+
+        .input-form-parameter {
+            color: blue;
+        }
+        
+    </style>
+}
+
+
+<button class="compose"> <i class="fa fa-pencil"></i></button>
+
+
+<div class="overlay">
+    <div class="modal_mod">
+        <div class="modal-title_le">Редактирование параметров<span class="modal-close"></span></div>
+        <div class="modal-body_dy">
+            <form class="modal-form">
+
+                <div>
+
+                    <b>id:</b>
+
+                    <input name="id" class="form-control input-form-parameter" type="number" value="@Model.id" />
+
+                </div>
+
+                <div>
+
+                    <b>parameter:</b>
+
+                    <input name="parameter" class="form-control input-form-parameter" type="text" />
+
+                </div>
+
+                <div>
+
+                    <b>codparameter:</b>
+
+                    <input name="codparameter" class="form-control input-form-parameter" type="text" />
+
+                </div>
+
+                <div>
+
+                    <b>meaning:</b>
+
+                    <input name="meaning" class="input-form-parameter" type="number" />
+
+                </div>
+
+                <div hidden="hidden">
+
+                    @Html.Editor("datetime")
+
+                </div>
+
+                <div hidden="hidden">
+
+                    @Html.Editor("lastupdate")
+
+                </div>
+
+                <div hidden="hidden">
+
+                    @Html.Editor("DumaId")
+
+                </div>
+
+                <div hidden="hidden">
+
+                    @Html.Editor("Duma")
+
+                </div>
+
+                <div class="modal-button">
+
+                    <button class="send">Отправить</button>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-md-offset-2">
+    
+    <table border="1" class="table_param table">
+
+        <thead>
+
+            <tr style="background-color:dodgerblue;">
+
+                <th>№</th>
+                <th>Параметр</th>
+                <th>Код параметра</th>
+                <th>Значение</th>
+                <th>Статус</th>
+                <th>Время обновления</th>
+
+            </tr>
+
+        </thead>        
+
+        <tbody>
+
+            <tr>
+
+                <td>@Model.id</td>
+                <td><input value="@Model.parameter" class="form-control" /></td>
+                <td><input value="@Model.codparameter" class="form-control" /></td>
+                <td><input value="@Model.meaning" class="form-control" /></td>
+                <td>@Model.Duma.status</td>
+                <td>@Model.lastupdate</td>
+
+            </tr>
+
+        </tbody>
+        
+    </table>
+
+</div>
+<link rel="stylesheet" href="~/Content/style_modal.css" />
+<script type="text/javascript" src="~/Scripts/js/script_modal.js">
+
+        //$('.overlay').css('margin-top', '-150px');
+
+</script>
+

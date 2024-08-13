@@ -1,0 +1,68 @@
+﻿@model duma.Models.Duma
+
+@{
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditDuma</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="container">
+    <h2>Редактирование</h2>
+    <div> 
+        @using(Html.BeginForm("EditDuma", "Home", FormMethod.Post))
+        {
+            <fieldset>
+                <p>
+                    @Html.LabelFor(l => l.Id, "Id") <br/>
+                    @Html.EditorFor(e => e.Id)
+                </p>                
+                <p>
+                    @Html.LabelFor(l => l.Date, "Дата") <br />
+                    @Html.EditorFor(e => e.Date)
+                </p>                                
+                <p>
+                    @Html.LabelFor(l => l.Date, "MacAdress") <br />
+                    @Html.EditorFor(e => e.MacAdress)
+                </p>
+                <p>
+                    @Html.LabelFor(l => l.Date, "IpAdress") <br />
+                    @Html.EditorFor(e => e.IpAdress)
+                </p>
+                <p>
+                    @Html.LabelFor(l => l.Date, "Port") <br />
+                    @Html.EditorFor(e => e.Port)
+                </p>
+                <p>
+                    @Html.LabelFor(l => l.Status, "Статус") <br />
+                    @Html.EditorFor(e => e.Status)
+                </p>
+                <p>
+                    @Html.LabelFor(l => l.Number, "Номер") <br />
+                    @Html.EditorFor(e => e.Number)
+                </p>
+                <p>
+                    @Html.LabelFor(l => l.Age, "Возраст") <br />
+                    @Html.EditorFor(e => e.Age)
+                </p>
+                <p><input type="submit" value="Отправить" /></p>
+            </fieldset>
+        }
+    </div>
+    <div class="navbar navbar-inverse navbar-fixed-top" ">
+        <div class="container">
+            <div class="nav-justified">
+                <ul>
+                    <li class="navbar-left">@Html.ActionLink("Меню аккаунта", "Account", "Account")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Delete";
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+}
+<div class="container">
+    <form method="post">
+        <h2>Вы уверены, что хотите удалить свой аккаунт?</h2>
+        <button type="submit">Да</button>
+    </form>
+</div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="nav-justified">
+            <ul>
+                <li class="navbar-left">@Html.ActionLink("Меню аккаунта", "Account", "Account")</li>
+            </ul>
+        </div>
+    </div>
+</div>

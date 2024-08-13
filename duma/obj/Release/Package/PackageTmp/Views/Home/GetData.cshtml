@@ -1,0 +1,29 @@
+﻿@model DumaA.Models.IpPort
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetData</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+
+        }
+        <div>
+
+            <label>ip адрес: @Model.Ip</label><br />
+            <label>port: @Model.Port</label><br />
+            <p>Get запрос: @ViewBag.Id</p>
+            <b>Valume: @ViewBag.Data</b>
+        </div>
+    </div>
+</body>
+</html>

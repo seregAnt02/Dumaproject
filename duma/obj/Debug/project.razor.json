@@ -1,0 +1,20 @@
+{
+  "SerializedFilePath": "c:\\Users\\seregaAn\\source\\repos\\duma\\duma\\obj\\Debug\\project.razor.json",
+  "FilePath": "c:\\Users\\seregaAn\\source\\repos\\duma\\duma\\duma.csproj",
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 1100
+  },
+  "RootNamespace": null,
+  "Documents": [],
+  "SerializationFormat": "0.3"
+}

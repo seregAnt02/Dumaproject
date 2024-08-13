@@ -1,0 +1,351 @@
+﻿@model duma.Models.Price
+
+    @{            
+            Layout = "~/Views/Shared/_Layout.cshtml";            
+    } 
+<title>цена</title>           
+<style>
+    input.wide-control {
+        width: 300px;
+        height: 50px;
+    }
+
+    .lab-name-control {
+        padding: 10px;
+    }
+
+    .text-box-wishes {
+        width: 710px;
+        height: 100px;
+        max-width: 350px;
+    }
+
+    .button_bold_text {
+        font: bold 700;
+    }
+    .img-modal-loading{
+
+        margin-top:-900px;
+    }
+</style>
+                        
+<script>
+
+    function Insert_video(){
+        var side_panel = $('.side-panel > ul > li > ul > li > span');
+        $(side_panel[0]).replaceWith('<span class="file"><a href="http://81.176.228.89:8888/video/">Видео 1.2</a></span>');
+    }    
+           
+</script>            
+
+<div class="container">
+
+    <h3 style="text-align:center">Схема работы</h3>
+
+    <b>1. Консультация:</b>    <br />
+
+    <div>
+
+        Оператор обрабатывает ваш запрос и передает всю информацию нужному специалисту. Далее мастер связывается с вами и обозначает чем мы можем помочь и какие результаты вы получите.
+
+        * При высокой загруженности ожидание звонка мастера может доходить до 24 часов
+    </div> <br />
+
+    <b>2. Осмотр:</b>
+
+    <div>
+        Выезд мастера на объект в удобное для вас время
+        Непосредственно в вашем доме, коттедже или объекте мастер сможет выполнить предварительные замеры, набросать эскизы планов местности, объекта и схемы монтажа.
+
+        * Если объект находится далеко от черты города, то возможна оплата выезда на осмотр, которая будет вычтена из сметы при заключении договора
+    </div> <br />
+
+    <b>3. Договор:</b>
+
+    <div>
+        Составление сметы и договора подряда
+        Обсуждаем все нюансы, согласовываем бюджет, оптимизируем затраты, чтобы не тратить ваши деньги в пустую. Прописываем этапы и сроки выполнения работ, чтобы вы знали, когда, сколько и за что будете платить. Подписываем договор.
+    </div> <br />
+
+    <b>4. Работа:</b>
+
+    <div>
+        Выполнение работ: проектирование, монтаж и наладка
+        Проектируем инженерные системы для вашего объекта, при необходимости повторно выезжаем на осмотр, чтобы все замеры были максимально точными.
+        Мастера производят монтаж и наладку инженерных систем, а также убирают после себя весь строительный мусор.
+
+        * Если строительного мусора много, то заказ контейнера производится за счет заказчика и оговаривается заранее, либо по факту.
+    </div> <br />
+
+
+    <b>5. Приемка:</b>
+
+    <div>
+        Финальный расчет производится после подписания акта-приемки выполненных работ.
+        
+    </div>  <br /><br /><br /><br />
+
+
+
+    <h3 style="text-align:center">Объем работы:</h3>
+
+    <div style="padding:30px; text-align:center">
+
+
+
+        @using (Html.BeginForm("Price", "Home", FormMethod.Post, new { @id = "myForm" })) {
+
+
+            //Html.AntiForgeryToken()
+            <div class="container" style="padding:30px">
+
+                <div class="row" style="text-align:left">
+
+                    <div class="col-md-5 col-md-offset-1">
+
+                        @Html.Label("Area", "Общая площадь дома или квартиры (м2)", new { @class = "lab-name-control" }) <br />
+
+                        <input id="id_area" name="Area" class="form-control" type="number" value="1" /> <br />
+
+
+                        @Html.Label("Lighting", "Освещение", new { @class = "lab-name-control" })<br />
+
+                        @Html.DropDownListFor(m => m.Lighting, new SelectList(new string[] { "8 Групп освещения", "16 Групп освещения", "32 Групп освещения", "64 Групп освещения" }), new { @class = "form-control" })<br />
+
+                        @Html.Label("Fan", "Система вентиляции", new { @class = "lab-name-control" })<br />
+
+                        @Html.DropDownListFor(m => m.Fan, new SelectList(new string[] { "да", "Нет" }), new { @class = "form-control" })<br />
+
+                        @Html.Label("Movements", "Количество датчиков движения и присутствия", new { @class = "lab-name-control" })<br />
+
+                        @Html.DropDownListFor(m => m.Movements, new SelectList(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }), new { @class = "form-control" })<br />
+
+                        @Html.Label("Management", "Управление шторами, дверьми, воротами", new { @class = "lab-name-control" })<br />
+
+                        @Html.DropDownListFor(m => m.Management, new SelectList(new string[] { "Нет", "1", "2", "3", "4", "5", "6", "7", "8", "9" }), new { @class = "form-control" })
+
+                    </div>
+
+                    <div class="col-md-4 col-md-offset-1">
+
+                        @Html.Label("Rooms", "Количество комнат", new { @class = "lab-name-control" }) <br />
+
+                        <input id="id_rooms" name="Rooms" class="form-control" type="number" value="1" />  <br />
+
+                        @Html.Label("Heatings", "Система отопления", new { @class = "lab-name-control" })<br />
+
+                        @Html.DropDownListFor(m => m.Heatings, new SelectList(new string[] { "1 Группа отопления", "4 Группа отопления", "8 Группа отопления", "16 Группа отопления" }), new { @class = "form-control" })<br />
+
+                        @Html.Label("Conditioner", "Управление кондиционерами", new { @class = "lab-name-control" })<br />
+
+                        @Html.DropDownListFor(m => m.Conditioner, new SelectList(new string[] { "1", "2", "3", "4", "5", "6" }), new { @class = "form-control" })<br />
+
+                        @Html.Label("Fireman", "Количество пожарных датчиков", new { @class = "lab-name-control" })<br />
+
+                        @Html.DropDownListFor(m => m.Fireman, new SelectList(new string[] { "1", "2", "3", "4", "5", "6" }), new { @class = "form-control" })<br />
+
+                        @Html.Label("Protection", "Защита от протечек", new { @class = "lab-name-control" })<br />
+
+                        @Html.DropDownListFor(m => m.Protection, new SelectList(new string[] { "1 зона", "2 зона", "3 зона", "4 зона", "5 зона", "6 зона" }), new { @class = "form-control" })
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div>
+
+                        @Html.Label("Electrician", "Количество розеток и электроприборов для управления через систему \"Умный Дом\"", new { @class = "lab-name-control" })<br />
+
+                        @Html.DropDownListFor(m => m.Electrician, new SelectList(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }),
+                       new { @class = "form-control col-md-offset-4" })<br />
+
+                    </div>
+
+                </div>
+
+                <div class="row" style="text-align:left">
+
+                    <div class="col-md-5 col-md-offset-1">
+
+                        <ul>
+
+                            @Html.Label("Cost", "В стоимость системы \"Умный Дом\" включены:", new { @class = "lab-name-control" })
+                            <li>Проектирование системы</li>
+                            <li>Сборка щитов автоматики</li>
+                            <li>Программирование оборудования</li>
+                            <li>Настройка работы системы</li>
+                            <li>Управление системой с мобильного устройства</li>
+                            <li>Создание и редактирование сценариев и режимов работы</li>
+                            <li>Сигнализация, Push-оповещение о важных событиях</li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="col-md-4 col-md-offset-1">
+
+                        @Html.Label("Radio", "Требуется ли монтаж электропроводки и электроприборов (датчики, розетки, светильники и т.д.) со стороны специалиастов нашей компании", new { @class = "lab-name-control" }) <br />
+                        @Html.RadioButton("Radio", "radio")
+
+                        <span>Требуется</span> <br />
+
+                        @Html.RadioButton("Radio", "radio")
+
+                        <span>Не требуется (выполняется третьими лицами / организациями)</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--<input type="submit" value="предварительный расчет"/>-->
+
+            <div>
+
+
+                <!--                <input id="ajaxQuery" type="button" value="предварительный расчет" title="цена расчета на калькуляторе, утрирована./в разработке/" class="form-control col-md-4 col-md-offset-3" />-->
+
+
+                <input id="contact" type="button" value="Отправить заявку" class="form-control col-md-2 col-md-offset-5" style="background-color:green; color:white" />
+
+
+            </div>
+
+            <input id="priceTotal" type="hidden" name="pricetotal" />            
+
+        }
+
+    </div>
+
+
+    @if (ViewBag.IsAuthenticated == "true") {
+
+        <script>
+
+            Insert_video();
+
+        </script>
+
+    }
+
+</div>     
+
+<script>
+
+    function InputValidate() {
+
+
+            var area = $('#id_area');
+
+            var rooms = $('#id_rooms');
+
+
+            //console.log(rezults);
+
+            $(area).change(function () {
+
+                $('#xxx').remove();
+
+                $(this).removeClass('input-validation-error');
+
+                if ($(this).val() < 1) {
+
+                    $(this).addClass('input-validation-error');
+
+                    $(contact).attr('disabled', 'disabled');
+
+                    //$(ajaxQuery).attr('disabled', 'disabled');
+
+                    $(this).after('<span id="xxx" class="field-validation-error">Число должно быть от 1 до 1000</span>').css('background-color', '#F08080');
+
+                }
+
+                if ($(this).val() > 0) {
+
+                    //contact.attr('disabled', false);
+                    //$(ajaxQuery).attr('disabled', false);
+
+                    $(this).css('background-color', '');
+
+                }
+
+            });
+
+            $(rooms).change(function () {
+
+                $('#yyy').remove();
+
+                $(this).removeClass('input-validation-error');
+
+                if ($(this).val() < 1) {
+
+                    $(this).addClass('input-validation-error');
+
+                    $(contact).attr('disabled', 'disabled');
+
+                    //$(ajaxQuery).attr('disabled', 'disabled');
+
+                    $(this).after('<span id="yyy" class="field-validation-error">Число должно быть от 1 до 10</span>').css('background-color', '#F08080');
+
+                }
+
+                if ($(this).val() > 0) {
+
+                    //contact.attr('disabled', false);
+                    //$(ajaxQuery).attr('disabled', false);
+
+                    $(this).css('background-color', '');
+
+                }
+
+            });
+        }
+    //--------------------------------------
+
+    InputValidate();
+
+    //--------------------------------------
+
+    $('#contact').click(function (event) {
+
+        var hostname = $(window.location).attr('hostname');
+
+        var url = hostname == "localhost" ? "/Home/Contact" : "/duma/Home/Contact";
+
+        var formData = $(':input').serialize();
+
+        $(this).attr('value', 'загрузка..');
+        $(this).css('color', 'red');        
+
+        var body = $('body')[0];
+
+        $(body).css('background-color', 'gray');
+
+        $('#img_modal').show();
+
+        //console.dir(formData);
+
+        $.get(url, formData, function (data, status) {
+
+            $(body).css('background-color', 'rgb(255, 255, 255)');
+
+            $('#img_modal').hide();            
+
+            $(body).html(data);         //заменить на .render_body
+
+            $('#contact').attr('value', 'успешно загруженно!!');
+            $('#contact').css('color', 'blue');
+
+            //event.preventDefault();
+            
+        });
+        
+    });
+
+</script>       
+    
+
+

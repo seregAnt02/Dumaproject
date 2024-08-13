@@ -1,0 +1,35 @@
+﻿@model duma.Models.EditModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "Edit"; 
+<div class="container">
+    <h2 class="text-center">Редактировать данные профиля</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            @Html.ValidationSummary(true, "")
+            <div>
+                <p>Year: @Html.EditorFor(model => model.Year)</p>
+            </div>
+
+            <div>
+                <div>
+                    <input type="submit" value="Сохранить" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="nav-justified">
+            <ul>
+                <li class="navbar-left">@Html.ActionLink("Меню аккаунта", "Account", "Account")</li>
+            </ul>
+        </div>
+    </div>
+</div>

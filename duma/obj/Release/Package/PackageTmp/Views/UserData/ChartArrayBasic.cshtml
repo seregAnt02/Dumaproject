@@ -1,0 +1,14 @@
+﻿
+@{
+    var myChart = new Chart(width: 600, height: 400, theme: ChartTheme.Green)
+        .AddTitle("Chart Title")
+        .AddSeries(
+            name: "Employee", chartType: "Column",
+            xValue: new[] { "Peter", "Andrew", "Julie", "Mary", "Dave" },
+            yValues: new[] { "2", "6", "4", "5", "3" })
+        .AddSeries(
+            name: "xxx", chartType: "Spline",
+            xValue: new[] { "Peter", "Andrew", "Julie", "Mary", "Dave" },
+            yValues: new[] { "2", "6", "4", "5", "3" })
+        .Write();
+}

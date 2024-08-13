@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+
+
+    @Scripts.Render("~/Scripts/jquery-3.3.1.min.js")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.min.js")
+
+    @Scripts.Render("~/bundles/inputmask")
+
+
+    <link rel="icon" type="image/x-icon" href="http://xn--d1aqu.su/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/panelDropDownCss.css")">
+    <link rel="stylesheet" type="text/css" href="~/Content/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/menu_css.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.treeview.css">
+
+    <script src="~/Scripts/js/js_main_menu.js"></script>
+    <script src="~/Scripts/js/js_panel_drop_down.js"></script>
+    <script src="~/Scripts/js/jquery.treeview.js"></script>
+    <script src="~/Scripts/js/jquery.cookie.js"></script>
+    <script src="~/Scripts/js/drop_down_treeview.js"></script>
+
+    <style type="text/css">
+        #main {
+            font-size: 37px;
+            vertical-align: bottom;
+            color: brown
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        //--------------------------------------
+        //--------------------------------------
+
+        function OnBegin() {
+
+            var body = $('body')[0];
+
+            $(body).css('background-color', 'gray');
+
+
+            $('.form-load-layout').empty();
+
+            $(body).css('background-color', 'rgb(255, 255, 255)');
+
+            $('#img_modal').show();
+
+
+        }
+
+        //--------------------------------------
+
+        //var rezults, contact;
+
+        function OnSuccess(data) {
+
+            $('#rezults').css("display", "inline");
+
+            var body = $('body')[0];
+
+            $(body).css('background-color', 'rgb(255, 255, 255)');
+
+            $('#img_modal').hide();
+
+            //$(body).html(data);
+
+            //--------------------------------------
+
+        }        
+            //--------------------------------------
+
+
+    </script>
+
+    <script src="~/Scripts/js/js_price.js"></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="menu-container">
+            <div class="menu">
+                <ul>
+                    <li>
+
+                        <div>
+                            @Ajax.ActionLink("О КОМПАНИЙ", "company", "home", new { name = "yyy" },
+                            new AjaxOptions { UpdateTargetId = "rezults", LoadingElementId = "loading", OnSuccess = "OnSuccess", OnBegin = "OnBegin" }, new { @class = "header-total" })
+                        </div>
+
+                    </li>
+
+
+                    <li>
+
+                        <div>
+                            <label id="ref_services_id" class="header-total">УСЛУГИ</label>
+
+                            @*@Ajax.ActionLink("УСЛУГИ", "Services", "Home",
+                            new AjaxOptions { UpdateTargetId = "rezults", LoadingElementId = "loading", OnSuccess = "OnSuccess", OnBegin = "OnBegin" }, new { @class = "header-total" })*@
+                        </div>
+
+                    </li>
+                    <li>
+
+                        <div>
+                            <label id="id_head_price" class="header-total">ЦЕНА</label>
+                        </div>
+
+
+                        <!--<a class="services_href">ЦЕНА</a>-->
+                        <!--div class="menu_href">@Html.ActionLink("ЦЕНА", "Price", "Home")</div>-->
+                        <!--<ul>
+                        <li><a href="#link">Раздел 1</a></li>
+                        <li><a href="#link">Раздел 2</a></li>
+                    </ul>-->
+                    </li>
+
+                    <li>
+
+                        <div>
+                            <label id="ref_coordinate_id" class="header-total">КОНТАКТЫ</label>
+
+                            @*@Ajax.ActionLink("КОНТАКТЫ", "Coordinate", "Home",
+                            new AjaxOptions { UpdateTargetId = "rezults", LoadingElementId = "loading", OnSuccess = "OnSuccess", OnBegin = "OnBegin" }, new { @class = "header-total" })*@
+
+                        </div>
+
+                    </li>
+
+                    <li>
+
+                        <div>
+
+                            @Ajax.ActionLink("ВХОД", "login", "account",
+                                new AjaxOptions { UpdateTargetId = "rezults", LoadingElementId = "loading", OnSuccess = "OnSuccess", OnBegin = "OnBegin" })
+
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <input type="checkbox" id="side-checkbox" />
+
+
+        <div class="side-panel">
+            <label class="side-button-2" for="side-checkbox">+</label>
+            <div class="side-title">Выдвижная панель:</div>
+            <p>Информация в панеле</p>
+            <ul id="browser" class="filetree">
+                <li>
+                    <span class="folder">Folder 1</span>
+                    <ul>
+                        <li>
+                            <span class="file">
+                                File 1.1.1
+                                <!--<a href="http://localhost:8888/video/">Видео</a>-->
+                            </span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="folder">Folder 2</span>
+                    <ul>
+                        <li>
+                            <span class="folder">Subfolder 2.1</span>
+                            <ul id="folder21">
+                                <li><span class="file">File 2.1.1</span></li>
+                                <li><span class="file">File 2.1.2</span></li>
+                            </ul>
+                        </li>
+                        <li><span class="file">File 2.2</span></li>
+                    </ul>
+                </li>
+                <li class="closed">
+                    <span class="folder">Folder 3 (closed at start)</span>
+                    <ul>
+                        <li><span class="file">File 3.1</span></li>
+                    </ul>
+                </li>
+                <li><span class="file">File 4</span></li>
+            </ul>
+        </div>
+
+
+
+
+
+        <div id="main">
+
+            <div class="side-button-1-wr">
+                <div class="side-button-1" for="side-checkbox">
+                    <div class="side-b side-open">Menu</div>
+                    <div class="side-b side-close">Menu</div>
+                </div>
+            </div>
+
+            <img src="~/Images/brand.bmp" style="width:40px;" />
+
+
+            <b style="font-size:21px;margin-left:25px">
+
+                <a href="~/Home/">
+
+                    <span style="font-size:30px;">А</span>
+
+                </a>
+
+                <span style="margin-left:-4px">
+
+                    втоматизированные системы управления
+
+                </span>
+
+            </b>
+
+        </div>
+
+        <div id="loading" style="display:none; color:Red; font-weight:bold; text-align:right">
+            <p>Идет загрузка...</p>
+        </div>
+
+
+        <div id="rezults">
+
+
+
+            @RenderBody()
+
+
+        </div>
+
+
+        <hr />
+
+
+
+
+        <div class="form-load-layout"></div>
+
+        <br />
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                <ul>
+                    <li>
+                        <a href="/duma/policy/privacypolicylist">Политика конфиденциальности</a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+
+        <br />
+
+        <footer>
+            <p class="navbar-fixed-bottom" style="font-weight:bold; text-align:right; margin-right:20px">
+                &copy; @DateTime.Now – приложение NET MVC
+            </p>
+        </footer>
+
+        <img id="img_modal" src="~/Images/Тающие линии.gif" class="col-md-offset-6 img-modal-loading" />
+
+    </div>
+    
+    <!--<footer>RenderSection("Brand", false)</footer><br /><br />-->
+
+</body>
+</html>

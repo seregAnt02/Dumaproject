@@ -1,0 +1,95 @@
+﻿
+
+    <div>
+
+        <b>
+
+            Администрирование серверов — услуга по настройке, управлению и техническому обслуживанию вашего сервера.
+
+        </b> <br />
+
+        <div style="margin-top:45px">
+            <b>Обслуживание компьютеров</b>
+
+            <ul>
+
+                <li>Обслуживание компьютеров и серверов на разовой и постоянной основе. Удаленная поддержка и выезд в день обращения.</li>
+
+            </ul>
+
+            <b>Локальные сети</b>
+
+            <ul>
+
+                <li>Монтаж локальных и беспроводных сетей. Установка, настройка и обслуживание сетевого оборудования.</li>
+
+            </ul>
+
+            <b>Системы видеонаблюдения</b>
+
+            <ul>
+
+                <li>Установка и настройка видеонаблюдения. Подключение удаленного просмотра на мобильных устройствах и ПК.</li>
+
+            </ul>
+
+        </div> <br />
+
+        <b style="margin-top:35px; color:green">Услуги от 2000 ₽.</b> <br />
+
+        <button style="margin-top:45px; background-color:green; color:white" class="col-md-offset-5">Заказать ПО</button>
+
+    </div>
+
+    <script>
+
+        //----------------------------------------------------
+        $('button').click(function () {
+
+            var hostname = $(window.location).attr('hostname');
+
+            var url = hostname == "localhost" ? "/Home/ContactMessage" : "/duma/Home/ContactMessage";
+
+            $('.app-dev-block').remove();
+
+            $('.form-load-layout').empty();
+
+            var body = $('body')[0];
+
+            $(body).css('background-color', 'gray');
+
+            var body = $('body')[0];
+
+            $('#img_modal').show();
+
+            $.get(url + "?content=" + 2, function (data, status) {
+
+                $('#img_modal').hide();
+
+                $(body).css('background-color', 'rgb(255, 255, 255)');
+
+                $('#rezults').html(data);
+
+            });
+
+        });
+        //----------------------------------------------------
+        function with_table() {
+
+            var width = $(window).width();
+
+            if (width > 400) {
+
+                $('#img_modal').css("margin-top", "-350px");
+
+            }
+            else {
+
+                $('#img_modal').css("margin-top", "-700px");
+            }
+        }
+        //----------------------------------------------------
+        with_table();
+        //----------------------------------------------------
+
+    </script>

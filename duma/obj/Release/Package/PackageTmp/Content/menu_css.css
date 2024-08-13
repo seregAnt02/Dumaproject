@@ -1,0 +1,223 @@
+/*menu 4*/
+.menu-container {
+    /*width: 70%;*/
+    /*margin: 20px auto;*/
+    /*margin-left: 13%;    */
+    background: #0a0a0a;     
+}
+.menu-mobile:after {/* Псевдоэлемент :after добавляет содержимое, после каждого элемента*/
+    content: "\f0c9";
+    font-family: "FontAwesome";
+    font-size: 38px;
+    line-height: 38px;
+    padding: 0;
+    color: rgb(255, 255, 255);
+    float: right;
+    position: relative;
+    transform: translateY(-25%);
+}
+/*используется с псевдоэлементами :before и :after для вставки сгенерированного контента.*/
+.menu-dropdown-icon:before {/*Псевдоэлемент :before добавляет содержимое, перед элементом*/
+    content: "\f0c9";
+    font-family: "FontAwesome";
+    display: none;
+    cursor: pointer;
+    float: right;
+    padding: 10px 20px;
+    margin: 10px;
+    background: #0a0a0a;
+    color: #FFF;
+    font-size: 20px;
+    /*border-radius: 10px;*/     
+}
+.menu > ul {
+    margin: 0 auto;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    position: relative;
+    box-sizing: border-box;  
+}
+.menu > ul:before,
+.menu > ul:after {
+    content: "";
+    display: table;
+}
+.menu > ul:after {
+    clear: both;
+}
+.menu > ul > li {
+    float: left;
+    background: #0a0a0a;
+    padding: 0;
+    margin: 0;
+    transition: .2s ease-in-out;
+}
+.menu > ul > li label,
+.menu > ul > li a,
+.menu-mobile {
+    text-decoration: none;
+    padding: 20px 30px;
+    display:  block;
+    color: rgb(48, 142, 230);
+    font-size: 15px;
+    line-height: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
+    transition: .2s ease-in-out;
+}
+.menu-mobile {
+    display: none;
+}
+.menu > ul > li:hover {
+    background: #BFE2FF; /*#BFE2FF*/
+}
+.menu > ul > li:hover a {
+    color: #000;
+}
+#id_head_price:hover {
+    color: #000;
+}
+/*.menu > ul > li > ul {
+    display: none;
+    width: 100%;
+    background: #BFE2FF;
+    padding: 20px;
+    position: absolute;
+    z-index: 99;
+    left: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+.menu > ul > li > ul:before,
+.menu > ul > li > ul:after {
+    content: "";
+    display: table;
+}
+.menu > ul > li > ul:after {
+    clear: both;
+}
+.menu > ul > li > ul > li {
+    margin: 0;
+    padding-bottom: 0;
+    list-style: none;
+    width: 25%;
+    background: none;
+    float: left;
+}
+.menu > ul > li > ul > li a {
+    padding: 10px;
+    display: block;
+    border-bottom: 1px solid #337AB7;
+}
+.menu > ul > li > ul > li a:hover {
+    color: #337AB7;
+    border-bottom: 1px solid #000;
+}
+.menu > ul > li > ul > li > ul {
+    display: block;
+    padding: 0;
+    margin: 10px 0 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+.menu > ul > li > ul > li > ul:before,
+.menu > ul > li > ul > li > ul:after {
+    content: "";
+    display: table;
+}
+.menu > ul > li > ul > li > ul:after {
+    clear: both;
+}
+.menu > ul > li > ul > li > ul > li {
+    float: left;
+    width: 100%;
+    margin: 0;
+}
+.menu > ul > li > ul > li > ul > li a {
+    border: 0;
+    padding: 10px 12px;
+    font-size: 18px;внутри меню
+}
+.menu > ul > li > ul > li > ul > li a:hover {
+    border: 0;
+}
+.menu > ul > li > ul.normal-sub {
+    width: 300px;
+    left: auto;
+    padding: 20px;
+}
+.menu > ul > li > ul.normal-sub > li {
+    width: 100%;
+}
+.menu > ul > li > ul.normal-sub > li a {
+    border: 0;
+    padding: 10px;
+}*/
+/*для мобильной версий максимальная ширина 768px*/
+@media only screen and (max-width: 768px) {
+    .menu-container {
+        /*width: 100%;        
+        border-radius: 10px;*/
+    }
+    .menu-mobile {
+        display: block;
+        border-radius: 10px;
+    }
+    .menu-dropdown-icon:before {
+        /*display: block;*/
+    }
+    .menu > ul {
+        display: none;
+    }
+        .menu > ul > li {
+            /*width: 100%;*/
+            float: none;
+            display: block;
+            background: #BFE2FF; /*#BFE2FF*/
+            border-bottom: 2px solid #FFF;
+            border-radius: 10px;
+        }
+            .menu > ul > li a {
+                /*padding: 20px;
+                width: 100%;*/
+                display: block;
+                color: #000;
+            }
+
+    #id_head_price {
+        color: #000;
+    }
+    /*.menu > ul > li > ul {
+                position: relative;
+    }
+    .menu > ul > li > ul.normal-sub {
+        width: 100%;
+        
+    }
+    .menu > ul > li > ul > li {
+        float: none;
+        width: 100%;
+    }
+    .menu > ul > li > ul:not(.normal-sub) > li {
+        margin-top: 20px;
+    }  
+    .menu > ul > li > ul > li:first-child {
+        margin: 0;
+    }
+    .menu > ul > li > ul > li > ul {
+        position: relative;
+    }
+    .menu > ul > li > ul > li > ul > li {
+        float: none;
+    }*/
+    .menu .show-on-mobile {
+        display: block;
+        z-index:4;
+    }
+    #img_modal {
+
+        margin-top:25px;
+        margin-left:150px;
+    }        
+}                

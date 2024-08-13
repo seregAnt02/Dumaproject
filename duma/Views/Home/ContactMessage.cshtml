@@ -1,0 +1,124 @@
+﻿
+
+    <header>
+
+        <style>
+
+            input.wide-control {
+                width: 300px;
+                height: 50px
+            }
+
+            .lab-name-control {
+                padding: 10px
+            }
+
+            .text-box-wishes {
+                width: 710px;
+                height: 100px;
+                max-width: 350px
+            }
+
+            .error {
+                color: black;
+            }
+
+            input.error {
+                background-color: salmon
+            }
+
+            .img-modal-loading {
+                margin-top: -400px;
+            }
+        </style>
+
+    </header>
+
+    <div class="container">
+
+
+
+        <h3 style="text-align:center">Заказать расчет</h3>
+
+
+
+        @if (ViewBag.ContentBool == 0) {
+
+            <div class="content-contact-message">
+                Если у Вас имеются какие-либо пожелания по Вашей системе, то Вы можете написать об этом в специальном окне "Ваши пожелания".
+                Далее просто нажмите кнопку "Отправить заявку" и наш специалист свяжется с Вами в ближайшее время.
+            </div>
+
+        }
+
+        @if (ViewBag.ContentBool == 2) {
+
+            <div class="content-contact-message">
+                Если у Вас имеются какие-либо пожелания по Вашей системе, то Вы можете написать об этом в специальном окне "Ваши пожелания".
+                Далее просто нажмите кнопку "Отправить заявку" и наш специалист свяжется с Вами в ближайшее время.
+            </div>
+
+        }
+
+
+        <form id="id_form" class="form-contact">
+
+            <div style="margin-top:35px" class="col-md-4 col-md-offset-4">
+
+                <div style="text-align:center">
+
+                    <label for="name" class="col-md-2" style="color:blue">Имя:</label>
+
+                    <input id="id_name" name="name" class="form-control col-md-offset-4"/> <br />
+
+
+                    <label for="telephone" class="col-md-2" style="color:blue">Телефон:</label>
+
+                    <input id="id_telephone" name="telephone" class="form-control col-md-offset-4 phone-field" /> <br />
+
+
+                    <label for="emailadress" class="col-md-3" style="color:blue">E-mail:</label>
+
+
+                    <input id="id_emailadress" name="emailadress" class="form-control col-md-offset-4" />
+
+                </div> <br />
+
+                <div style="text-align:center">
+
+                    <!--<input type="hidden" value="ViewBag.BookId" name="BookId" />-->
+                    <p>
+
+                        <label>Ваши пожелания</label>  <br />
+
+                        <textarea class="text-box-wishes" />    <br /><br />
+
+                        <label style="font-size:10px;color:brown">*Расширения файла: .xls, .xlsx, .docx, .pptx, .pub</label>
+
+                        <input id="download_file" name="urlupload" type="file" accept=".xls,.xlsx,.docx,.pptx,.pub" /> <br />
+
+                        <input class="check_box-soglasie" type="checkbox" /> 
+
+                        <label><a style="font-size:10px" class="ref-a-check-box-soglasie">Ввод данных подтверждает ваше согласие на обработку персональных данных.</a></label> <br />
+
+                        <input class="check_box-privacy-policy" type="checkbox" /> 
+
+                        <label><a style="font-size:10px" class="ref-a-check-box-privacypolicy">Ввод данных подтверждает ваше согласие с политикой конфиденциальности.</a></label> <br />
+
+                        <input id="formButton" type="button" value="Отправить заявку" style="color:white; background-color:green" disabled="disabled" class="form-control" />
+
+                    </p>
+
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <script src="~/Scripts/js/js_contac_message.js"></script>
+
+    
+

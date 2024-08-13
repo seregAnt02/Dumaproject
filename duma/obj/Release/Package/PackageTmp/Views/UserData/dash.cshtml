@@ -1,0 +1,88 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <head>
+        <meta charset="UTF-8">
+        <title>DASH</title>
+        <meta name="description" content="видео проигрователь" />
+        <link href="https://vjs.zencdn.net/7.8.2/video-js.css" rel="stylesheet" />        
+    </head>
+    <body>
+        <video id="video" class="video-js"></video>        
+        <button id="button_xls">button_xls</button>
+        <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-quality-levels@2.0.9/dist/videojs-contrib-quality-levels.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/videojs-hls-quality-selector@1.1.4/dist/videojs-hls-quality-selector.min.js"></script>
+        <script src="https://vjs.zencdn.net/7.8.2/video.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-eme@3.7.0/dist/videojs-contrib-eme.min.js"></script>
+        <script>
+            // Перезагрузить текущую страницу
+            //window.addEventListener("offline", (e) => window.location.reload());
+
+            var size_video = "640px";
+            var width = $(window).width();
+            if (width < 400) {
+                size_video = "300px";
+            }
+            //console.log(size_video);
+            var player = videojs(document.querySelector('.video-js'), {
+                techOrder: ["html5"],
+                //liveui: true,
+                controls: true,
+                preload: 'auto',
+                width: size_video,
+                poster: "http://81.176.228.89/duma/Images/jPlayer/jplayer.pink.flag.video.play.png",
+                html5: {
+                    hlsjsConfig: {
+                       autoStartLoad: true,
+                      startPosition: -1,
+                      debug: false,
+                      capLevelOnFPSDrop: false,
+                      capLevelToPlayerSize: false,
+                      defaultAudioCodec: undefined,
+                      initialLiveManifestSize: 1,
+                      maxBufferLength: 30,
+                      maxMaxBufferLength: 600,
+                      backBufferLength: Infinity,
+                      maxBufferSize: 60 * 1000 * 1000,
+                      maxBufferHole: 0.5,
+                      highBufferWatchdogPeriod: 2,
+                      nudgeOffset: 0.1,
+                      nudgeMaxRetry: 3
+                    }
+                }
+            });
+            //src: "file://seregavds02/videos/" , http://localhost:50836/videos/dash.mpd, http://xn--d1aqu.su/duma/videos/dash.mpd
+            player.src({
+                src: "http://localhost:50836/videos/dash.mpd",
+                type: "application/dash+xml",
+            });
+            $(document).ready(function () {
+                $('#video').click(function () {
+                    $(this).css('border', '2px solid black');
+                    //$('.border_windows').css('width', '644px');
+                    //event.preventDefault(); // отменяем действие события по умолчанию
+                    //});
+                });   
+                $('#button_xls').click(function () {
+                    //player.dispose();
+                    player.cache = {}
+                    //player = null;
+                    console.log('xxx');
+                });
+            });
+            //player.play(); //политика автозапуска включить в chrome
+            function Insert_video() {
+                var side_panel = $('.side-panel > ul > li > ul > li > span');
+                //http://81.176.228.89:8888/video/, http://localhost:8888/video/
+                $(side_panel[0]).replaceWith('<span class="file"><a href="http://localhost:8888/video/">Видео 1.2</a></span>');
+            }
+        </script>
+        <div>
+            @if (ViewBag.IsAuthenticated == "true") {
+                <script>
+                    Insert_video();
+                </script>
+            }
+        </div>
+    </body>

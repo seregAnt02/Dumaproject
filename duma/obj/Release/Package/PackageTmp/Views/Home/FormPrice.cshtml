@@ -1,0 +1,282 @@
+﻿<div class="form-price col-md-offset-4">
+
+    <h4>Список цен:</h4>
+
+    <div class="container">
+
+        <input type="radio" style="margin-top:45px" class="input-radio-price" />
+
+        <label style="margin-left:45px">Разработке Web-приложений, сайтов ASP.NET Core, MVC 5.</label><br />
+
+        <input type="radio" class="input-radio-price" />
+
+        <label style="margin-left:45px">Автоматизаций объектов.</label><br />
+
+        <input type="radio" class="input-radio-price" />
+
+        <label style="margin-left:45px">Системное администрирование сервера.</label> <br />
+
+        <button class="form-group button-next-price" style="margin-top:45px; background-color:green; color:white">Продолжить</button>
+
+        <!--<button style="margin-left:45px">Отмена</button>-->
+
+    </div>
+
+</div>
+<script>       
+
+    $(".button-next-price").click(function () {
+
+        const list = document.getElementsByClassName("input-radio-price");
+
+        for (let x = 0; x < list.length; x++) {
+
+            //$(list[x]).attr("checked", true);
+
+            var input_checked = $(list[x])[0];//list[x].getAttribute("checked");            
+
+            if (x == 0 && input_checked.checked == true) {
+
+                var hostname = $(window.location).attr('hostname');
+
+                var url = hostname == "localhost" ? "/Home/ApplicationDevelopment" : "/duma/Home/ApplicationDevelopment";
+
+                $('.form-load-layout').empty();
+
+                var body = $('body')[0];
+
+                $(body).css('background-color', 'gray');
+
+                //var body = $('body')[0];
+
+                $('#img_modal').show();
+
+                $.get(url, function (data, status) {
+
+                    $('#img_modal').hide();
+
+                    $(body).css('background-color', 'rgb(255, 255, 255)');
+
+                    $('#rezults').html(data);
+
+                    //location.href = "/Home/Price";                    
+                });
+
+            }
+
+            if (x == 1 && input_checked.checked == true) {
+
+                var hostname = $(window.location).attr('hostname');
+
+                var url = hostname == "localhost" ? "/Home/Price" : "/duma/Home/Price";
+
+
+                $('.form-load-layout').empty();
+
+                var body = $('body')[0];
+
+                $(body).css('background-color', 'gray');
+
+                $('#img_modal').show();
+
+                $.get(url, function (data, status) {
+
+                    $('#img_modal').hide();
+
+                    $(body).css('background-color', 'rgb(255, 255, 255)');
+
+                    //$(body).empty();
+
+                    $(body).html(data);
+
+                    //resultInputErorr();
+
+                    //location.href = "/Home/Price";
+                    //console.log(status);
+                });
+
+                // console.dir(input_checked.checked + " => " + x);
+
+            }
+
+            if (x == 2 && input_checked.checked == true) {
+
+                var hostname = $(window.location).attr('hostname');
+
+                var url = hostname == "localhost" ? "/Home/ServerAdministration" : "/duma/Home/ServerAdministration";
+
+                $('.form-load-layout').empty();
+
+                var body = $('body')[0];
+
+                $(body).css('background-color', 'gray');
+
+                $('#img_modal').show();
+
+                $.get(url, function (data, status) {
+
+                    $('#img_modal').hide();
+
+                    $(body).css('background-color', 'rgb(255, 255, 255)');
+
+                    $('#rezults').html(data);
+
+                    //location.href = "/Home/Price";                    
+                });
+
+            }
+
+        }
+
+    });
+    //--------------------------------------
+
+    $(".input-radio-price").click(function () {
+
+        const list = document.getElementsByClassName("input-radio-price");   
+
+        for (let x = 0; x < list.length; x++) {
+
+            list[x].checked = false;
+
+        }   
+
+        this.checked = true;
+
+    });
+
+    //--------------------------------------
+    var rezults, contact;
+    function resultInputErorr() {
+
+        rezults = $("#rezults")[0].children;
+
+        //console.log(rezults);
+
+        if ($($(rezults)[3]).length > 0) {
+
+            //var ajaxQuery = $(rezults)[3].children[11].children[0][13];
+
+            contact = $(rezults)[3].children[21].children[0][13];
+
+            //--------------------------------------
+
+            InputValidate();
+
+            //--------------------------------------
+            //--------------------------------------
+
+            $(contact).click(function (event) {
+
+                var hostname = $(window.location).attr('hostname');
+
+                var url = hostname == "localhost" ? "/Home/Contact" : "/duma/Home/Contact";
+
+                var formData = $(':input').serialize();
+                //отключение стандартной отправки формы
+                
+                $(this).attr('value', 'загрузка..');
+                $(this).css('color', 'red');                
+
+                var body = $('body')[0];
+
+                $(body).css('background-color', 'gray');
+
+                $('#img_modal').show();
+
+                $.get(url, formData, function (data, status)                
+                {
+
+                    $(body).css('background-color', 'rgb(255, 255, 255)');
+
+                    $('#img_modal').hide();
+
+                    $('body').html(data);         //заменить на .render_body               
+                    $(contact).attr('value', 'успешно загруженно!!');
+                    $(contact).css('color', 'blue');
+                    //console.log(data);
+                });
+                //event.preventDefault();        
+            });
+
+        }
+
+        //--------------------------------------
+
+        function InputValidate() {
+
+
+            var area = $(rezults).find("input#id_area")[0];
+
+            var rooms = $(rezults).find("input#id_rooms")[0];
+
+
+            //console.log(rezults);
+
+            $(area).change(function () {
+
+                $('#xxx').remove();
+
+                $(this).removeClass('input-validation-error');
+
+                if ($(this).val() < 1) {
+
+                    $(this).addClass('input-validation-error');
+
+                    $(contact).attr('disabled', 'disabled');
+
+                    //$(ajaxQuery).attr('disabled', 'disabled');
+
+                    $(this).after('<span id="xxx" class="field-validation-error">Число должно быть от 1 до 1000</span>').css('background-color', '#F08080');
+
+                }
+
+                if ($(this).val() > 0) {
+
+                    $(contact).attr('disabled', false);
+                    //$(ajaxQuery).attr('disabled', false);
+
+                    $(this).css('background-color', '');
+
+                }
+
+            });
+
+            $(rooms).change(function () {
+
+                $('#yyy').remove();
+
+                $(this).removeClass('input-validation-error');
+
+                if ($(this).val() < 1) {
+
+                    $(this).addClass('input-validation-error');
+
+                    $(contact).attr('disabled', 'disabled');
+
+                    //$(ajaxQuery).attr('disabled', 'disabled');
+
+                    $(this).after('<span id="yyy" class="field-validation-error">Число должно быть от 1 до 10</span>').css('background-color', '#F08080');
+
+                }
+
+                if ($(this).val() > 0) {
+
+                    $(contact).attr('disabled', false);
+                    //$(ajaxQuery).attr('disabled', false);
+
+                    $(this).css('background-color', '');
+
+                }
+
+            });
+        }
+
+    }
+
+    
+    //--------------------------------------
+    //--------------------------------------
+    //console.log(list);
+
+</script>
