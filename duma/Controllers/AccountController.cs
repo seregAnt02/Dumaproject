@@ -124,14 +124,17 @@ namespace duma.Controllers
         [HttpGet]
         public ActionResult Login() {
 
-            var hostname = HttpContext.Request.IsLocal;//$(window.location).attr('hostname');
+            var hostname = HttpContext != null ? HttpContext.Request.IsLocal : false;//$(window.location).attr('hostname');
 
             var url = hostname ? "/UserData/Parameter/" : "/duma/UserData/Parameter/";
 
             //ViewBag.returnUrl = "/DumaA/UserData/Parameter/";
             ViewBag.returnUrl = url;
             //var model = new LoginModel { Email = "xxx@yyy", Password = "123" };
-            return PartialView();
+            var result = PartialView();
+            result.ViewName = "Account";
+            ViewData["Message"] = "Hello world!";
+            return result;
         }
         //===========================================================        
         [HttpPost]

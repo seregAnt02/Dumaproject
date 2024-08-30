@@ -10,6 +10,9 @@ using duma.Models;
 namespace duma.Controllers {
     public class HomeController : Controller {
         IRespository db;
+
+        public HomeController() { }
+
         public HomeController(IRespository repo) {
             /*
              * Чтобы управлять зависимостями через Ninject, вначале надо создать объект Ninject.IKernel 
@@ -174,9 +177,12 @@ namespace duma.Controllers {
         //============================================
         public ActionResult Index() {
             //var model = db.DumaList();
-            if (User.Identity.IsAuthenticated) ViewBag.IsAuthenticated = "true";
+            if (User != null && User.Identity.IsAuthenticated) ViewBag.IsAuthenticated = "true";
             //var model = db.Dumas.Select(s => s.Date).FirstOrDefault();
-            return PartialView();
+            var result = PartialView();
+            result.ViewName = "Index";
+            ViewData["Message"] = "Hello world!";
+            return result;
         }
         //============================================
         [HttpGet]
